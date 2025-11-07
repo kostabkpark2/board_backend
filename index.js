@@ -23,6 +23,17 @@ db.connect((err)=>{
     console.log("db 접속 성공 !!!!")
 });
 
+app.get("/boards", (req,res)=>{
+    const sql = "select * from board";
+    db.query(sql, (err, results)=>{
+        if(err) {
+            console.log(err);
+            return;
+        }
+        res.status(200).json(results);
+    });
+});
+
 app.listen(port, ()=>{
     console.log("localhost:3000 에서 서버가 실행중...");
 });
