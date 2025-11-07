@@ -1,0 +1,28 @@
+import express from "express";
+import mysql from "mysql2";
+import cors from "cors";
+import dotenv from "dotenv";
+
+const app = express();
+const port = 3000;
+app.use(express.json());
+app.use(cors());
+
+dotenv.config();
+
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user:process.env.DB_USER,
+    password:process.env.DB_PASSWORD,
+    database : process.env.DB_NAME
+});
+
+db.connect((err)=>{
+    if(err) {console.log(err);return}
+    console.log("db 접속 성공 !!!!")
+});
+
+app.listen(port, ()=>{
+    console.log("localhost:3000 에서 서버가 실행중...");
+});
