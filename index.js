@@ -34,6 +34,16 @@ app.get("/boards", (req,res)=>{
     });
 });
 
+app.post("/boards", (req, res)=>{
+    const {title, writer, pass, contents} = req.body.board;
+    console.log(title, writer, pass, contents);
+    const sql = "insert into board(title, writer,pass,contents) values(?,?,?,?)";
+    db.query(sql, [title, writer, pass, contents], (err, results)=>{
+        if(err) console.log(err);
+        res.status(201).send("작성완료");
+    });
+});
+
 app.listen(port, ()=>{
     console.log("localhost:8000 에서 서버가 실행중...");
 });
