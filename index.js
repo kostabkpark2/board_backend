@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 const app = express();
-const port = 3000;
+const port = 8000;
 app.use(express.json());
 app.use(cors());
 
@@ -35,5 +35,5 @@ app.get("/boards", (req,res)=>{
 });
 
 app.listen(port, ()=>{
-    console.log("localhost:3000 에서 서버가 실행중...");
+    console.log("localhost:8000 에서 서버가 실행중...");
 });
